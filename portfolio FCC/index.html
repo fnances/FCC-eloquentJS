@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/stylesheet.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,800,700|Mrs+Sheppards&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Nova+Round' rel='stylesheet' type='text/css'>
+    <script src="https://use.fontawesome.com/4cbedaaf48.js"></script>
+    <title>Patrick Tłuszcz - Front End Developer</title>
+</head>
+
+<body>
+    <a id="hamburger"><i class="fa fa-bars"></i></a>
+    <header  class="header-sidebar">
+        <div class="logo">
+            <h1 class="main-header">
+                        Patrick <br />
+                        <i class="fa fa-code"></i>
+                        Tłuszcz
+                  </h1>
+        </div>
+        <h2 class="header-job">Front-End Developer</h2>
+        <nav id="header"  class="nav-menu">
+            <ul class="navigation-list">
+                <li><a href="">Home</a></li>
+                <li><a href="">Skills</a></li>
+                <li><a href="">Portfolio</a></li>
+            </ul>
+
+
+            <p class="header-contact">Contact me: </p>
+            <aside class="social-icons">
+                <a href=""><i class="fa fa-facebook"></i></a>
+                <a href=""><i class="fa fa-linkedin"></i></a>
+                <a href=""><i class="fa fa-github"></i></a>
+                <a href=""><i class="fa fa-gitlab"></i></a>
+                <a id="email-display"><i class="fa fa-envelope-o"></i></a>
+            </aside>
+            </nav>
+    </header>
+
+    <div class="container">
+
+
+        <main>
+            <section id="home">
+                <h3 class="section-heading "> Welcome !</h3>
+
+                <article class="aboutme">
+                    <img src="./assets/my_picture.jpg" alt="Author's Photography" class="home-picture">
+
+                    <p class="aboutme-info"> Hi, I am Patrick, young citizen of Bochnia - small city placed near Cracow.
+                        <br />
+                        <br /> I'm self-taught Front-End Developer, in near future willing to become FullStack Developer. New technologies are no fear for me because acquiring new abilities is my second nature.
+                        <br />
+                        <br /> At this moment everything I am proud about is couple of self-coded free PSD projects, but no need for worries I am a good student with solid theory behind me - now lets make it real.
+                        <br />
+                        <br /> I'm free to hire - dont miss your opportunity !
+                    </p>
+
+                </article>
+
+                <a href="" class="home-arrows">
+                    <i class="fa fa-angle-double-down"></i>
+                </a>
+            </section>
+            <section id="skills">
+                <h3 class="section-heading "> Skills</h3>
+
+                <ul class="skills-list">
+                    <li>HTML5</li>
+                    <li class="skill-good-level"><span class="progress"></span></li>
+                    <li>CSS3</li>
+                    <li class="skill-good-level"><span class="progress"></span></li>
+                    <li>JavaScript</li>
+                    <li class="skill-decent-level"><span class="progress"></span></li>
+                    <li>ES6</li>
+                    <li class="skill-decent-level"><span class="progress"></span></li>
+                    <li>jQuery</li>
+                    <li class="skill-decent-level"><span class="progress"></span></li>
+                    <li>Bootstrap</li>
+                    <li class="skill-basic-level"><span class="progress"></span></li>
+                    <li >Sass/LESS</li>
+                    <li class="skill-good-level"><span class="progress"></span></li>
+                    <li>Git</li>
+                    <li class="skill-good-level"><span class="progress"></span></li>
+                    <li>Photoshop</li>
+                    <li class="skill-basic-level"><span class="progress"></span></li>
+                    <li>NPM</li>
+                    <li class="skill-basic-level"><span class="progress"></span></li>
+                    <li>NodeJS</li>
+                    <li class="skill-basic-level"><span class="progress"></span></li>
+                    <li>ExpressJS</li>
+                    <li class="skill-basic-level"><span class="progress"></span></li>
+                    <li>MongoDB</li>
+                    <li class="skill-basic-level"><span class="progress"></span></li>
+                    <li>ReactJS + Redux</li>
+                    <li class="skill-basic-level"> <span class="progress"></span></li>
+                    <li>Webpack</li>
+                    <li class="skill-basic-level"><span class="progress"></span></li>
+                </ul>
+
+
+            </section>
+            <section id="portfolio">
+                <h3 class="section-heading "> Recent projects</h3>
+                <ul class="portfolio-projects">
+                    <li><a href=""><img src="./assets/Cuda.jpg" alt="CUDA Single Page  project" class="portfolio-img"></a>
+                        <p class="project-name">CUDA Single Page</p>
+                    </li>
+                    <li><a href=""><img src="./assets/Blogmagazine.jpg" alt="Blog Magazine project" class="portfolio-img"></a>
+                            <p class="project-name">Blog Magazine UI Kit</p>
+                    </li>
+                    <li><a href=""><img src="./assets/singolo.jpg" alt="Singolo latest project" class="portfolio-img"></a>
+                            <p class="project-name">Singolo</p>
+                    </li>
+                    <li><a href=""><img src="./assets/notify.jpg" alt="Notify project" class="portfolio-img"></a>
+                            <p class="project-name">Notify</p>
+                    </li>
+                </ul>
+            </section>
+        </main>
+        <aside id="email-contact-form">
+            <i id="exit-btn-contact" class="fa fa-times"></i>
+            <h3 class="contact-form-heading">Lets get in touch !</h3>
+            <form action="POST" id="contact-form">
+            <input type="text" placeholder="Email" name="email">
+            <input type="text" placeholder="Name"  name="name">
+            <textarea placeholder="Whats up?" name="content"> </textarea>
+            <input type="submit" value="Send" name="sendButton">
+            </form>
+
+        </aside>
+    </div>
+
+    <script src="js/progress.js"></script>
+</body>
+
+</html>

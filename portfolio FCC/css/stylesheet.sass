@@ -1,0 +1,346 @@
+// SASS VARIABLES && STUFF
+$raleway: 'Raleway', sans-serif
+$nova: 'Nova Round', cursive
+$sheppards: 'Mrs Sheppards', cursive
+$fallbacks : 'PT Sans', sans-serif
+$red: #ff7473
+$orange: #ffc952
+$mint: #47b8e0
+$pinkHover: #e95787
+$silver-job: #aaafc6
+$font-color: #363842
+$good: good
+$basic: basic
+$decent: decent
+
+=clear
+    display: block
+    content: ""
+    clear: both
+
+=border($radius)
+    border: 2px solid $silver-job
+    border-radius: $radius
+=focus
+    &:focus
+        border-color: $pinkHover
+        outline: none
+=loader($level)
+    position: relative
+    overflow: hidden
+    .progress
+        background-color: $silver-job
+        height: 100%
+        width: 100%
+        border-radius: 50px
+        position: absolute
+        left: -100%
+        animation: $level 5s linear 5s
+        animation-fill-mode: forwards
+
+    @keyframes good
+        from
+            left: -100%
+        to
+            left: -15%
+    @keyframes decent
+        from
+            left: -100%
+        to
+            left: -30%
+
+    @keyframes basic
+        from
+            left: -100%
+        to
+            left: -45%
+
+.opacity-toggle
+    opacity: 0.3
+.show
+    display: flex !important
+    opacity: 0
+
+
+#hamburger
+    display: none
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+p,a,i,span,h1,h2,h3,h4,h5,h6, ul
+    display: block
+
+
+html
+    font-size: 62.5%
+    font-family: $raleway, $fallbacks
+    color: $font-color
+ul
+    list-style-type: none
+a
+    text-decoration: none
+    color: inherit
+.container
+    max-width: 1000px
+    margin-left: 300px
+
+.header-sidebar
+    display: flex
+    position: fixed
+    left: 60px
+    width: 240px
+    flex-direction: column
+    .logo
+        margin-top: 30px
+        &:hover > .main-header > .fa
+            color: $pinkHover
+        .main-header
+            font-size: 3.5rem
+            letter-spacing: 3px
+            word-spacing: 3px
+            font-family: $sheppards, $fallbacks
+            .fa
+                width: 65px
+                margin: -15px 0 0 -15px
+                font-size: 70px
+                height: 65px
+    .header-job
+        font-size: 2.5rem
+        margin-top: 15px
+        margin-bottom: 30px
+        color: $silver-job
+        font-family: $nova
+        font-weight: 900
+    .nav-menu
+        .navigation-list
+            li
+                margin: 15px
+                a
+                    font-weight: 600
+                    font-size: 1.7rem
+                    &:hover
+                        color: $pinkHover
+        .header-contact
+            font-weight: 600
+            font-size: 1.7rem
+            margin: 30px 0
+        .social-icons
+            margin: 0 auto
+            display: flex
+            flex-direction: row
+            flex-wrap: wrap
+            justify-content: space-around
+            a
+                margin: 8px
+                .fa
+                    padding: 10px
+                    color: $silver-job
+                    font-size: 3rem
+                    &:hover
+                        color: $pinkHover
+
+// MAIN CONTENT
+main
+    section
+        text-align: center
+    .section-heading
+        padding-top: 30px
+        font-size: 4.5rem
+    #home
+        .aboutme
+            margin: 0 auto
+            width: 80%
+            display: flex
+            justify-content: space-between
+            padding-top: 50px
+            .home-picture
+                width: 300px
+                height: 300px
+
+                border-radius: 30%
+            .aboutme-info
+                font-size: 1.7rem
+                text-align: justify
+                line-height: 1.7rem
+                word-spacing: 0.5rem
+                font-weight: 500
+                margin-left: 20px
+    .home-arrows
+        margin: 200px auto 20px auto
+        .fa
+            font-size: 70px
+            color: $silver-job
+        &:hover > .fa
+            color: $pinkHover
+
+    #skills
+        .skills-list
+            display: flex
+            width: 80%
+            margin: 30px auto 50px auto
+            flex-wrap: wrap
+            justify-content: space-between
+            li
+                margin: 7px 0
+            li:nth-child(odd)
+                width: 30%
+                font-size: 1.7rem
+                align-items: flex-start
+            li:nth-child(even)
+                width: 50%
+                +border(50px)
+                height: 20px
+                align-items: flex-end
+            .skill-good-level
+                +loader($good)
+            .skill-decent-level
+                +loader($decent)
+            .skill-basic-level
+                +loader($basic)
+    #portfolio
+        .portfolio-projects
+            display: flex
+            width: 80%
+            margin: 40px auto
+            flex-direction: row
+            flex-wrap: wrap
+            li
+                width: calc(50% - 20px)
+                margin: 20px 10px
+                height: 220px
+                text-align: center
+                .project-name
+                    font-size: 1.7em
+                    margin: 10px
+
+#email-contact-form
+    position: fixed
+    z-index: 999
+    dis
+    left: calc(50vw - 400px/2)
+    top: calc(50vh - 600px/2)
+    width: 400px
+    height: 600px
+    display: none
+    justify-content: center
+    align-content: center
+    flex-direction: column
+    .fa
+        font-size: 50px
+        align-self: flex-end
+        cursor: pointer
+        &:hover
+            color: $pinkHover
+    .contact-form-heading
+        font-size: 3rem
+        padding: 20px
+    #contact-form
+        display: flex
+        justify-content: center
+        flex-direction: column
+        input[type="text"], textarea, input[type="submit"]
+            height: 30px
+            width: 90%
+            margin: 10px
+            +border(5px)
+            font-style: 1.7em
+            +focus
+            &:hover
+                border-color: $pinkHover
+            font-size: 2rem
+            background-color: white
+            font-weight: 600
+            color: $font-color
+
+        textarea
+            max-height: 200px
+            max-width: 90%
+            height: 70px
+        input[type="submit"]
+            width: 30%
+
+@media screen and ( max-width: 560px )
+    .aboutme
+        flex-direction: column
+    .show-burger
+        display: flex !important
+        height: auto !important
+        z-index: 9999
+    .container
+        margin-top: 50px
+        width: 100%
+        margin-left: 0
+    .header-sidebar .header-job
+        margin: 10px auto
+    #portfolio, #home, #skills
+        width: 100%
+    #hamburger
+        font-size: 70px
+        color: $font-color
+        position: fixed
+        display: block
+        top: 0
+        left: 0
+        z-index: 99999
+    .header-sidebar .nav-menu
+        display: none
+        height: 0
+        top: 0
+        width: 100%
+        position: fixed
+        flex-direction: column
+        align-items: center
+        background-color: white
+    .navigation-list
+    .navigation-list  li
+        padding: 0
+        margin: 0 auto
+        width: 100%
+        z-index: 999
+    main #home  .section-heading
+        padding: 0
+    .header-sidebar
+        position: static
+        background-color: white
+        width: 100%
+        margin: 0 auto
+        left: 0
+        .logo
+            align-self: center
+        .header-job
+            align-self: center
+    #skills  .skills-list
+        flex-direction: column
+    #skills .skills-list li
+        align-self: center
+        width: 90% !important
+    main #portfolio  .portfolio-projects
+        flex-direction: column
+    main #portfolio  .portfolio-projects li
+        align-self: center
+        width: 100%
+        margin: 40px 0
+    main .home-arrows
+        margin: 20px auto
+@media screen and (min-width: 561px) and ( max-width: 840px )
+    html
+        font-size: 75%
+    .container
+        margin: 0 auto
+    .header-sidebar
+        position: static
+        left: 0
+        margin: 0 auto
+        text-align: center
+        font-size : 3.5rem
+    .navigation-list
+        display: flex
+    .header-sidebar .nav-menu .social-icons
+        flex-wrap: nowrap
+        width: 100%
+    .header-sidebar .header-contact
+        margin: 0 auto
+    .aboutme
+        flex-direction: column
