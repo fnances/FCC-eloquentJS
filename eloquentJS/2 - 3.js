@@ -1,25 +1,26 @@
 //chessBoard
 
-var chessBoard = '',
-    hash = '',
-    space = "\n",
-    height = 8,
-    width = 4;
+var chessBoard = '';
+var hash = '';
+var space = "\n";
+var height = 8;
+var width = 4;
 
-  for( var i = 1 ; i <= height ; i++){
-    if(i === 1) chessBoard += space;
-    if( i % 2 === 0 ) hash = "# ";
-    else hash = " #";
+chessBoard += space;
+
+for (var i = 1; i <= height; i++) {
+	if (i % 2 === 0) hash = "# ";
+	else hash = " #";
 
 
-    for(var j = 1 ; j <= width ; j++){
+	for (var j = 1; j <= width; j++) {
 
-      chessBoard += hash;
+		chessBoard += hash;
 
-    }
+	}
 
-    chessBoard += space;
+	chessBoard += space;
 
-  }
+}
 
 console.log(chessBoard);

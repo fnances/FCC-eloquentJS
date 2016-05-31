@@ -1,8 +1,17 @@
 // FizzBuzz
+function FizzBuzz(loops) {
+	var FizzBuzz = " ";
+	for (i = 1; i <= loops; i++) {
 
-for( i = 1 ; i <= 100 ; i++){
-  if((i % 3 === 0)&&(i % 5 === 0)) console.log(' FizzBuzz' );
-  else if(i % 3 === 0) console.log( ' Fizz');
-  else if(i % 5 === 0) console.log( ' Buzz');
-  else console.log(i);
+		if (i % 3 === 0) {
+			FizzBuzz += "Fizz";
+		}
+		if (i % 5 === 0) {
+			FizzBuzz += "Buzz";
+		}
+		console.log(i, FizzBuzz);
+		FizzBuzz = " ";
+	}
 }
+
+FizzBuzz(100);
