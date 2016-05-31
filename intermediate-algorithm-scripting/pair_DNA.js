@@ -1,19 +1,19 @@
 function pairElement(str) {
-  var DNA = {
-    "A": "AT",
-    "C": "CG",
-    "G": "GC",
-    "T": "TA"
-  },
-      pairedDNA = [] ;
+	var DNA = {
+			"A": "AT",
+			"C": "CG",
+			"G": "GC",
+			"T": "TA"
+		},
+		pairedDNA = [];
 
-  for(var i = 0 ; i < str.length ; i++){
+	for (var i = 0; i < str.length; i++) {
 
-    pairedDNA.push(DNA[str[i]].split(''));
+		pairedDNA.push(DNA[str[i]].split(''));
 
-  }
+	}
 
-  return pairedDNA;
+	return pairedDNA;
 }
 
 pairElement("GCG");

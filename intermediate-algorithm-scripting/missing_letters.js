@@ -1,18 +1,18 @@
 function fearNotLetter(str) {
 
-  var missingLetter = false;
+	var missingLetter = false;
 
-  for( var i = 0 ; i < str.length ; i++){
+	for (var i = 0; i < str.length; i++) {
 
-    if(str.charCodeAt(i) + 1 < str.charCodeAt(i + 1) ){
-      var charCodeDifference = str.charCodeAt(i + 1 ) - 1;
-       missingLetter = String.fromCharCode(charCodeDifference);
-       return missingLetter;
-    }
-  }
+		if (str.charCodeAt(i) + 1 < str.charCodeAt(i + 1)) {
+			var charCodeDifference = str.charCodeAt(i + 1) - 1;
+			missingLetter = String.fromCharCode(charCodeDifference);
+			return missingLetter;
+		}
+	}
 
-  return undefined;
+	return undefined;
 
 }
 
-fearNotLetter("yz"); 
+fearNotLetter("yz");

@@ -1,15 +1,15 @@
 function diffArray(arr1, arr2) {
-  var newArr = arr1.concat(arr2);
-  newArr.sort();
+	var newArr = arr1.concat(arr2);
 
- newArr = newArr.filter( function (value, index, array) {
-   var indx = array.indexOf(value, 0);
+	newArr = newArr.filter(function (value, index, array) {
 
-   if((array[index] !== array[index+1])&&(array.indexOf(value, index ) === indx))
-     return value;
-    
- });
-      return newArr;
+		if (((arr1.indexOf(value) === -1) && (arr2.indexOf(value) !== -1)) ||
+			((arr2.indexOf(value) === -1) && (arr1.indexOf(value) !== -1))) {
+			return value;
+		}
+
+
+	});
+	return newArr;
 }
-
-diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]);
+diffArray([3, 1, 2, 3, 5], [1, 2, 4, 5]);
