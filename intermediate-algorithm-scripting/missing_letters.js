@@ -11,7 +11,7 @@ function fearNotLetter(str) {
 		}
 	}
 
-	return undefined;
+	return;
 
 }
 

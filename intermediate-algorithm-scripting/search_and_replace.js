@@ -1,6 +1,6 @@
 function myReplace(str, before, after) {
-	var arr = str.split(' '),
-		replacedWord = after;
+	var arr = str.split(' ');
+	var replacedWord = after;
 
 	arr.forEach(function (value, index, arr) {
 
