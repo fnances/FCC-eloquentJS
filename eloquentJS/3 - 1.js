@@ -1,8 +1,6 @@
-function min (arg1, arg2){
+function min(arg1, arg2) {
 
-  var min = arg1 > arg2 ? arg2 : arg1;
-
-   return min;
+	return (arg1 < arg2) ? arg1 : arg2;
 
 }
 
