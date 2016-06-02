@@ -26,7 +26,7 @@ function listToArray(list) {
 
 function prepend(element, list) {
 	var arr = listToArray(list);
-	arr.push(element);
+	arr.unshift(element);
 	return arrayToList(arr);
 
 }
