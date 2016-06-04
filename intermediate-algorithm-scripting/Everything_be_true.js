@@ -1,30 +1,23 @@
 function truthCheck(collection, pre) {
-	var counter = 0;
+	var result = collection.map(function (value, index, array) {
 
-	var result = collection.forEach(function (value) {
+		if (value[pre]) return 1;
+		return -1;
+	}).reduce(function (prev, curr) {
+		return prev + curr;
+	}, 0);
 
-		if ((value[pre]) && (Boolean(value[pre])) || (value[pre] === "yes")) {
-			counter++;
-		}
-
-	});
-
-	console.log(counter);
-	console.log(collection.length);
-	if (counter === collection.length) return true;
+	if (result === collection.length) return true;
 	return false;
 }
 
 truthCheck([{
-	"user": "Tinky-Winky",
-	"sex": "male"
+	"name": "Pete",
+	"onBoat": true
 }, {
-	"user": "Dipsy",
-	"sex": "male"
+	"name": "Repeat",
+	"onBoat": true
 }, {
-	"user": "Laa-Laa",
-	"sex": "female"
-}, {
-	"user": "Po",
-	"sex": "female"
-}], "sex");
+	"name": "FastFoward",
+	"onBoat": null
+}], "onBoat")
