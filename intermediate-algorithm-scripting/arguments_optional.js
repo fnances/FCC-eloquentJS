@@ -1,27 +1,23 @@
 function addTogether() {
-	var args = Array.from(arguments);
-	var sum = 0;
+	var arg1 = arguments[0];
+	var arg2 = arguments[1];
 
-	if ((args.length > 1) && (typeof args[0] == "number") && (typeof args[1] == "number")) {
-		return args[0] + args[1];
-	}
-
-	args = args.reduce(function (prev, curr) {
-		return prev + curr;
-	}, 0);
-
-	if (typeof args != "number") {
-		return;
-	}
-
-	return function (num) {
-		var sum = args + num;
-
-		if (typeof num != "number") {
+	var sum = function (num) {
+		if (typeof num !== "number") {
 			return;
 		}
-		return sum;
+		if (typeof arg1 !== "number") {
+			return;
+		}
+		return arg1 + num;
 	};
 
+	if ((arguments.length > 1) || (typeof arg1 !== "number")) {
+		return sum(arg2);
+	}
+
+	return sum;
 }
-addTogether(2, "3");
+console.log(
+	addTogether(2)(3)
+);
