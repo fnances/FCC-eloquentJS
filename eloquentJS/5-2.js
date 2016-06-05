@@ -13,8 +13,6 @@ ancestry.forEach(function (person) {
 	byName[person.name] = person;
 });
 
-console.log(byName);
-
 var ageDifference = ancestry.map(function (person) {
 
 	if (byName[person.mother]) {
