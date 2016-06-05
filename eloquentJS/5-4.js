@@ -1,11 +1,10 @@
 function every(array, action) {
-	var condition = true;
 	for (var i = 0; i < array.length; i++) {
 		if (!action(array[i])) {
-			condition = false;
+			return false;
 		}
 	}
-	return condition;
+	return true;
 }
 
 function some(array, action) {
