@@ -1,0 +1,48 @@
+.container
+	width: 100%
+	margin: 30px auto
+	display: flex
+	flex-direction: column
+	justify-content: center
+	align-items: center
+	color: #343434
+
+.header, .welcome-header
+	font-weight: normal
+main
+	width: 100%
+	display: flex
+	justify-content: center
+	align-items: center
+	flex-direction: column
+	font-size: 1.5em
+	background-color: #aaafc6
+	height: 200px
+	font-style: italic
+#quotes
+	margin-top: 80px
+	&::before
+		content: "“"
+		margin: 2px
+		padding: 5px
+		font-size: 1.5em
+	&::after
+		content: "”"
+		padding: 5px
+		margin: 2px
+		font-size: 1.5em
+#author
+	font-size: 1em
+
+	&::before
+		content: "-"
+		padding: 5px
+		font-size: 1.5em
+#random-btn
+	padding: 10px
+
+	border-radius: 10px
+	border-color: #ffffff
+	margin: 15px
+	color: #ffffff
+	background-color: #343434
