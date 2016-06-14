@@ -1,0 +1,52 @@
+$margin-sides: calc(50% - 50px)
+
+=center($direction)
+	display: flex
+	justify-content: center
+	align-items: center
+	flex-direction: $direction
+
+html
+	font-size: 62.5%
+	font-family: Titilium Web
+	color: #011627
+	background-color: #D1B6E1
+.container
+	width: 768px
+	margin: 50x auto
+	+center(row)
+	align-items: baseline
+#weather-details
+	+center(auto)
+	width: 500px
+
+	flex-wrap: wrap
+	list-style-type: none
+	li
+		width: calc(50% - 3px)
+		margin-top: 3px
+		font-size: 2em
+		border-top: 3px solid #FEDD31
+	li:nth-child(odd)
+		align-self: flex-start
+
+	li:nth-child(even)
+		align-self: flex-end
+		border-left: 3px solid #FEDD31
+
+.wi
+	color: #393939
+	font-size: 100px
+	margin: 50px 0 40px 200px
+#switchUnit
+	padding: 10px
+	width: 170px
+	font-size: 1.5em
+	font-weight: 500
+	font-style: italic
+	position: relative
+	top: 27px
+	right: 0px
+	border-radius: 15px
+	border: 0px solid transparent
+	background-color: #FEDD31
