@@ -32,6 +32,14 @@
 			}
 
 		},
+		onSuccesGetLocation: function (position) {
+			this.latitude = position.coords.latitude;
+			this.longitude = position.coords.longitude;
+			this.fetchWeather();
+		},
+		onFailureGetLocation: function (error) {
+			console.log(error);
+		},
 		bindEvents: function () {
 			this.switchUnitBtn.addEventListener('click', this.switchUnits.bind(this));
 		},
@@ -46,14 +54,6 @@
 			this.switchUnitBtn.innerHTML = "Switch to Fahrenheit";
 			this.temperature.innerHTML = this.temperatureCelsius + " C&deg;";
 
-		},
-		onSuccesGetLocation: function (position) {
-			this.latitude = position.coords.latitude;
-			this.longitude = position.coords.longitude;
-			this.fetchWeather();
-		},
-		onFailureGetLocation: function (error) {
-			console.log(error);
 		},
 		fetchWeather: function () {
 			this.url = "http://api.openweathermap.org/data/2.5/weather?";
