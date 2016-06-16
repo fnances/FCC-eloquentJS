@@ -1,0 +1,67 @@
+=center($direction)
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: $direction
+
+html
+  font-size: 62.5%
+  font-family: Titilium Web
+  background-color: #A593E0
+#container
+  width: 760px
+
+  +center(row)
+  animation: opacityChange 3s ease-in
+
+#search
+  margin: 10px
+  font-size: 35px
+  cursor: pointer
+  color: #004e66
+
+
+.changePosition
+  animation: positionChange 5s ease-out !important
+
+
+
+@keyframes opacityChange
+  0%
+      display: none
+      opacity: 0
+
+
+  1%
+      display: block
+      opacity: 0
+  50%
+      display: block
+      opacity: 0.5
+  100%
+      display: block
+      opacity: 1
+
+@keyframes positionChange
+  0%
+    margin: 200px auto
+  50%
+    margin: 100px auto
+  100%
+    margin: 30px auto
+
+#phrase
+  background-color: #dae9f4
+  color: #282c37
+  border: 3px solid #004e66
+  outline: none
+  font-size : 1.5rem
+  padding: 5px
+  border-top-right-radius: 10px
+  border-bottom-left-radius: 10px
+
+
+#results
+  margin: 0 auto
+  list-style-type: none
+  +center(column)
