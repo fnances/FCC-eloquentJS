@@ -8,9 +8,13 @@ html
   font-size: 62.5%
   font-family: Titilium Web
   background-color: #A593E0
+  color: #34314c
+a
+  text-decoration: none
+  color: inherit
 #container
   width: 760px
-
+  margin: 250px auto
   +center(row)
   animation: opacityChange 3s ease-in
 
@@ -22,9 +26,9 @@ html
 
 
 .changePosition
-  animation: positionChange 5s ease-out !important
-
-
+  animation: positionChange 3s ease-out !important
+  animation-fill-mode: forwards
+  margin: 30px auto !important
 
 @keyframes opacityChange
   0%
@@ -43,12 +47,10 @@ html
       opacity: 1
 
 @keyframes positionChange
-  0%
-    margin: 200px auto
-  50%
-    margin: 100px auto
-  100%
-    margin: 30px auto
+  from
+    margin: 250px auto
+  to
+    margin: 30px auto !important
 
 #phrase
   background-color: #dae9f4
@@ -65,3 +67,27 @@ html
   margin: 0 auto
   list-style-type: none
   +center(column)
+  li
+    width: 70%
+    border: 3px solid #004e66
+    margin: 7px
+    border-top-right-radius: 10px
+    border-bottom-left-radius: 10px
+  .result-description
+    font-size: 1.5rem
+
+  .result-title-address
+    padding: 10px
+    display: block
+    font-size: 2.5rem
+    font-weight: bold
+    &::after
+      content: "<< read more..."
+      letter-spacing: 2px
+      font-size: 1.4rem
+      font-style: italic
+      color: #7200da
+      margin-left: 10px
+
+.random-page
+  font-size: 2em

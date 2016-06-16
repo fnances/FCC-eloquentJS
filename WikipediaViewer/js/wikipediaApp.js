@@ -4,7 +4,7 @@ var wikipediaAPP = (function () {
 	var phrase = document.getElementById('phrase');
 	var searchBtn = document.getElementById('search');
 	var container = document.getElementById('container');
-	var body = document.getElementsByTagName('body');
+	var body = document.body;
 	var searchedPhrase;
 
 	function bindEvents() {
@@ -12,9 +12,10 @@ var wikipediaAPP = (function () {
 	}
 
 	function addScriptTag() {
+		searchedPhrase = phrase.value.replace(" ", "%20");
+
 		var script = document.createElement("script");
 		document.body.appendChild(script);
-		searchedPhrase = phrase.value.replace(" ", "%20");
 		var cb = "&callback=wikipediaAPP.handleJSON";
 		script.src = APIurl + searchedPhrase + cb;
 		document.body.removeChild(script);
@@ -57,10 +58,12 @@ var wikipediaAPP = (function () {
 		if (!ul) {
 			var ul = document.createElement("ul");
 			ul.id = "results";
-			body[0].appendChild(ul);
+			body.appendChild(ul);
 		}
 
-		container.classList.add("changePosition");
+		if (!container.classList.contains("changePosition")) {
+			container.classList.add("changePosition");
+		}
 		ul.innerHTML = preparedData.reduce(function (prev, current) {
 			prev += current;
 			return prev;
@@ -71,7 +74,7 @@ var wikipediaAPP = (function () {
 	return {
 		bindEvents: bindEvents,
 		handleJSON: handleJSON
-	}
+	};
 
 })();
 
