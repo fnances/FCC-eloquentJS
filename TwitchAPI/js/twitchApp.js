@@ -20,22 +20,6 @@ var twitchApp = (function () {
 		bindEvents();
 	}
 
-
-	// function addScriptTags() {
-	//
-	// 	var scriptTags = streamers.map(createScriptTag).join("\n");
-	//
-	// 	body.innerHTML += scriptTags;
-	//
-	// }
-
-	// function createScriptTag(streamer) {
-	// 	var src = "src=\"" + url + streamer + cb + "\"";
-	// 	var script = "<script " + src + "></script>";
-	//
-	// 	return script;
-	// }
-
 	var handleJSON = function (data) {
 		if (data.stream !== null) {
 
@@ -60,7 +44,7 @@ var twitchApp = (function () {
 			var pClassName = "class=\"streamer-game-viewers\"";
 			var p = "<p " + pClassName + ">" + streamer.game + "<br/>" + streamer.viewers + "</p> \n";
 
-			var li = "<li>" + a + img + p + "</li>";
+			var li = "<li class=\"online-streamer\">" + a + img + p + "</li>";
 
 			return render(li);
 		}
@@ -92,42 +76,70 @@ var twitchApp = (function () {
 
 	}
 
+
+
 	function showAll() {
 		btnAll.classList.toggle("all");
-		var ulChildren = ul.children;
-		for (var i = 0; i < ulChildren.length; i++) {
-			ulChildrens[i].classList.add("fadeIn");
+		removeClassOtherBtn(btnOnline, btnOffline);
+		var ulChild = ul.children;
+		for (var i = 0; i < ulChild.length; i++) {
+			addRemove(ulChild[i], "fadeOut", "fadeIn");
 
 		}
 	}
 
 	function showOnline() {
-		var ulChildren = ul.children;
-		for (var i = 0; i < ulChildren.length; i++) {
+		btnOnline.classList.toggle("online");
+		removeClassOtherBtn(btnAll, btnOffline);
+		var ulChild = ul.children;
 
-			var isOffline = ulChildren[i].classList.contains("offline-streamer");
-			if (!isOffline) {
-				ulChildren[i].classList.toggle("fadeIn")
+		for (var i = 0; i < ulChild.length; i++) {
 
+			if (hasClass(ulChild[i], "offline-streamer")) {
+				addRemove(ulChild[i], "fadeIn", "fadeOut");
 			} else {
-				ulChildren[i].classList.toggle("fadeOut")
+				addRemove(ulChild[i], "fadeOut", "fadeIn");
 			}
 
 		}
 	}
 
 	function showOffline() {
-		var ulChildren = ul.children;
-		for (var i = 0; i < ulChildren.length; i++) {
+		btnOffline.classList.toggle("offline");
+		removeClassOtherBtn(btnAll, btnOnline);
 
-			var isOffline = ulChildren[i].classList.contains("offline-streamer");
-			if (isOffline) {
-				ulChildren[i].classList.toggle("fadeIn")
+		var ulChild = ul.children;
 
+		for (var i = 0; i < ulChild.length; i++) {
+			if (hasClass(ulChild[i], "online-streamer")) {
+				addRemove(ulChild[i], "fadeIn", "fadeOut");
 			} else {
-				ulChildren[i].classList.toggle("fadeOut")
-			}
+				addRemove(ulChild[i], "fadeOut", "fadeIn");
 
+			}
+		}
+	}
+
+
+	function hasClass(element, className) {
+		return element.classList.contains(className);
+	};
+
+	function addRemove(e, classToRemove, classToAdd) {
+		if (e.classList.contains(classToRemove)) {
+			e.classList.remove(classToRemove);
+		}
+		e.classList.add(classToAdd);
+
+	}
+
+	function removeClassOtherBtn() {
+		var args = arguments;
+		for (var i = 0; i < args.length; i++) {
+			if (args[i].classList.length > 1) {
+				var classToRemove = args[i].classList[1];
+				args[i].classList.remove(classToRemove);
+			}
 		}
 	}
 

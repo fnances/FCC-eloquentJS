@@ -10,38 +10,34 @@ html
   font-size: 62.5%
   font-family: Titilium Web
   color: #1F2124
+  background-color: #F68657
 ul
   list-style-type: none
 a
   text-decoration: none
 
 .fadeOut
-  animation: fadeOut 5s ease-linear-out
+  animation: fadeOut 1s ease-in
   opacity: 0
+  display: none !important
 .fadeIn
-  animation: fadeIn 5s ease-linear-in
+  animation: fadeIn 1s ease-in
   opacity: 1
+  display: initial
 
 @keyframes fadeOut
-  0%
+  from
     opacity: 1
-  40%
-    opacity: 0.6
-  80%
-    opacity: 0.2
-  100%
+  to
     opacity: 0
-    display:none
+    display: none
 
 
 @keyframes fadeIn
-  0%
+  from
+    display: none
     opacity: 0
-  60%
-    opacity: 0.6
-  80%
-    opacity: 0.8
-  100%
+  to
     opacity: 1
     display: initial
 
@@ -77,26 +73,26 @@ a
 .all
   background-color: #f9a11b
 
-#streamers > li
-  +center(column)
-  +borderRadius(7px)
-  width: 60%
-  border: 2px solid #383A3F
-  margin: 10px
-  &:hover
-    background-color: green
+#streamers
+  li
+    +center(column)
+    +borderRadius(7px)
+    width: 60%
+    border: 2px solid #383A3F
+    margin: 10px
+
 
 .streamer-logo
-  width: 50px
-  height: 50px
+  width: 70px
+  height: 70px
   align-self: flex-start
   border-radius: 50%
-  position: relative
-  bottom: 40px
-  left: 40px
+  margin: 20px auto
+
 
 .streamer-name-link
   font-size: 3rem
+  margin-top: 20px
   font-weight: bold
   color: #566270
   &:after
@@ -106,8 +102,7 @@ a
     color: #75D701
 
 .streamer-game-viewers
-  position: relative
-  bottom: 70px
+
   font-size: 2rem
   &::after
     content: " - viewers"
@@ -115,4 +110,9 @@ a
 .offline-streamer
   background-color: #566270
   &:hover
-    background-color: red !important
+    background-color: #2E294E
+    color: #ffffe3
+.online-streamer
+  background-color: #9DC8C8
+  &:hover
+    background-color: #E0E3DA
