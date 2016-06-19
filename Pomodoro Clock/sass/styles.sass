@@ -1,0 +1,61 @@
+=center($direction, $wrap)
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: $direction
+  flex-wrap: $wrap
+
+
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+html
+  font-size: 62.5%
+  font-family: Titilium Web
+  background-color: #d9e1e8
+  color: #282c37
+
+.container
+  width: 760px
+  margin: 0 auto
+  +center(row, wrap)
+
+
+.settings
+  +center(row, wrap)
+  width: 50%
+  i, span
+    width: calc(33% - 30px)
+    margin: 20px 10px
+    font-size: 50px
+    text-align: center
+i
+  cursor: pointer
+  &:hover
+    color:  #9baec8
+
+h2
+  width: 100%
+  margin: 20px 10px
+  text-align: center
+  font-size: 3rem
+  letter-spacing: 3px
+.fa
+  color: #2b90d9
+  &:hover
+
+.header-time-left
+  width: 100%
+.fa-play
+  font-size: 80px !important
+  width: 100%
+  text-align: center
+#time-passing
+  width: 300px
+  height: 300px
+  border: 3px solid #2b90d9
+  border-radius: 50%
+  +center(auto, auto)
+  font-size: 8rem
