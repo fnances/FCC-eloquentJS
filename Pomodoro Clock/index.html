@@ -3,36 +3,38 @@
 <head>
 
   <link rel="stylesheet" href="sass/styles.min.css" media="screen" title="no title" charset="utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js" charset="utf-8"></script>
+
 </head>
 <body>
 
-<div class="container">
+<div ng-app="clockApp" ng-controller="timeController" class="container">
 
 <div class="settings">
   <h2>Break Length</h2>
-  <i id="break-minus" class="fa fa-minus"></i>
-  <span id="breakLength">5</span>
-  <i id="break-plus" class="fa fa-plus"></i>
+  <i ng-click="addOrSubstract(-1)" class="fa fa-minus"></i>
+  <span>{{settingsBreakLength}}</span>
+  <i ng-click="addOrSubstract(1)"  class="fa fa-plus"></i>
 
 </div>
 <div class="settings">
   <h2>Session Length</h2>
-  <i id="session-minus" class="fa fa-minus"></i>
-  <span id="sessionLength">25</span>
-  <i id="session-plus" class="fa fa-plus"></i>
+  <i ng-click="addOrSubstractSession(-1)" class="fa fa-minus"></i>
+  <span >{{settingsSessionLength}}</span>
+  <i ng-click="addOrSubstractSession(1)" class="fa fa-plus"></i>
 
 </div>
 
-<i id="play" class="fa fa-play"></i>
+<i ng-click="startCountingDown()" class="fa" ng-class="{'fa-play': !isCounting , 'fa-pause': isCounting}"></i>
 <h2 class="header-time-left">Time to next break:</h2>
-<span id="time-passing">25</span>
+<span id="time-passing">{{ sessionLength | secondsToMinute:startFiltering }}</span>
 
 
 </div>
 
 
+<script src="js/clockApp.js" charset="utf-8"></script>
 
-<script src="js/clock.js" charset="utf-8"></script>
 <script src="https://use.fontawesome.com/51a7efa550.js"></script>
 </body>
 </html>
