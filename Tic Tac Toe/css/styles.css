@@ -1,0 +1,38 @@
+.container, .btnContainer{
+    width: 345px;
+    height: 345px;
+    margin: 0 auto;
+}
+.field{
+    float: left;
+    width: 100px;
+    margin: 5px;
+    height: 100px;
+    border: 2px solid #777777;
+    box-sizing: border-box;
+
+}
+.field:hover{
+    background-color: #C3CBCF;
+}
+
+.btn{
+    width: calc(50% - 30px);
+    height: 75px;
+    margin: 10px;
+    text-transform: uppercase;
+    font-size: 60px;
+    color: #efffe9;
+    font-family: 'Lobster', cursive;
+    border: none;
+    box-shadow: 3px 3px 3px #999999;
+    cursor: pointer;
+    opacity: 0.77;
+}
+
+.X{
+    background-color: #e71d36;
+}
+.O{
+    background-color: #011627;
+}
