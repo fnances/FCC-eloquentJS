@@ -2,91 +2,103 @@ var TicTacToe = (function () {
 	var fields = document.getElementsByClassName("field");
 	var x = document.getElementById("x");
 	var o = document.getElementById("o");
+	var btnContainer = document.getElementsByClassName('btnContainer')[0];
 	var playerChoice = "";
 	var computerChoice = "";
-	var possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+	var possibleMoves = [];
 	var playerMoves = "";
 	var computerMoves = "";
+	var winner = false;
 
 	function bindEvents() {
 		x.addEventListener("click", setUsers);
 		o.addEventListener("click", setUsers);
 		addEventsAndSetID(fields, "click", playerMove);
-
-	}
-
-	function playerMove() {
-		var id = this.id;
-
-		var field = document.getElementById(id);
-		field.innerHTML = playerChoice;
-		field.removeEventListener("click", playerMove);
-
-		playerMoves += id;
-		possibleMoves = possibleMoves.splice(parseInt(id), 1);
-
-
-		if (field.innerHTML === playerChoice) {
-			checkWinner(playerMoves, playerChoice);
-		}
-
-	}
-
-	function checkWinner(moves, player) {
-
-		var winningFields = ["012", "345", "678", "036", "147", "258", "048", "246"];
-
-		var result = winningFields.map(function (value) {
-
-			if (value === moves) {
-				return true;
-			}
-			for (var i = 0; i < value.length; i++) {
-
-				if (!moves.indexOf(value[i]) > -1) {
-					return false;
-				}
-			}
-			return true;
-		});
-
-		result = result.some(function (value) {
-			return !!value;
-		});
-
-
-		if (result) {
-			console.log("congratulations ! ", player, " Won !");
-			removeEventListeners(fields, "click", playerMove);
-		}
-		if (player === playerChoice) {
-			computerTurn();
-		}
-
-	}
-
-	function clearTable(addIdd) {
-		for (var i = 0; i < fields.length; i++) {
-			fields[i].innerHTML = "";
-		}
 	}
 
 	function setUsers() {
 		playerChoice = this.id;
 		computerChoice = (playerChoice === "x") ? "o" : "x";
+		if (computerChoice === "x") {
+			computerTurn();
+		}
 		removeEventListeners([x, o], "click", setUsers);
 	}
 
+
+	function playerMove() {
+		var id = this.id;
+		var moveToRemove = possibleMoves.indexOf(parseInt(id));
+		possibleMoves.splice(moveToRemove, 1);
+		var field = document.getElementById(id);
+		playerMoves += id;
+		field.innerHTML = playerChoice;
+		checkWinner(playerChoice);
+		field.removeEventListener("click", playerMove);
+	}
+
 	function computerTurn() {
-		var randomMove = Math.floor(Math.random() * possibleMoves.length);
-		var computerMove = possibleMoves[randomMove];
+		var computerMove = randomArray();
+		var moveToRemove = possibleMoves.indexOf(computerMove);
+		possibleMoves.splice(moveToRemove, 1);
+
 		var fieldID = fields[computerMove].id;
 		var field = document.getElementById(fieldID);
-		possibleMoves = possibleMoves.splice(randomMove, 1);
+
+		computerMoves += fieldID.toString();
 		field.innerHTML = computerChoice;
-		computerMoves += computerMove.toString();
+		checkWinner();
 		field.removeEventListener("click", playerMove);
-		checkWinner(computerMoves, computerChoice);
+
+	}
+
+	function checkWinner(checker) {
+
+		var winningFields = ["012", "345", "678", "036", "147", "258", "048", "246"];
+		var arrayOfMoves = [playerMoves, computerMoves];
+
+		winningFields.forEach(function (field) {
+
+			arrayOfMoves.forEach(function (move) {
+
+				for (var i = 0; i < field.length; i++) {
+					if (!includes(move, field[i])) {
+						return false;
+					}
+				}
+
+				winner = move;
+
+			})
+		});
+
+		if (winner) {
+			winner = (winner === playerMoves) ? playerChoice : computerChoice;
+			gameOver();
+			return;
+		}
+		if (checker === playerChoice) {
+			return computerTurn();
+		}
+
+	}
+
+	function gameOver() {
+		removeEventListeners(fields, "click", playerMove);
+		var div = document.createElement('div');
+		div.id = "game-over-div";
+		div.innerHTML = winner.toUpperCase() + " has won !";
+		btnContainer.appendChild(div);
+	}
+
+	function includes(string, item) {
+		return string.indexOf(item) > -1;
+	}
+
+	function randomArray() {
+		var randomElement = Math.floor(Math.random() * possibleMoves.length);
+
+		return possibleMoves[randomElement];
 	}
 
 	function removeEventListeners(array, eventType, event) {
@@ -97,15 +109,15 @@ var TicTacToe = (function () {
 
 	function addEventsAndSetID(fields, eventType, action) {
 		for (var i = 0; i < fields.length; i++) {
-			fields[i].id = i
+			fields[i].id = i;
 			var id = fields[i].id;
+			possibleMoves.push(i);
 			document.getElementById(id).addEventListener(eventType, action);
 		}
 	}
 
 	return {
-		bindEvents: bindEvents,
-		computerTurn: computerTurn
+		bindEvents: bindEvents
 
 	};
 

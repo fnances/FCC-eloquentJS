@@ -1,3 +1,8 @@
+html{
+    font-size: 62.5%;
+    font-family: 'Lobster', cursive;
+}
+
 .container, .btnContainer{
     width: 345px;
     height: 345px;
@@ -10,6 +15,11 @@
     height: 100px;
     border: 2px solid #777777;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10em;
+    text-transform: uppercase;
 
 }
 .field:hover{
@@ -22,8 +32,9 @@
     margin: 10px;
     text-transform: uppercase;
     font-size: 60px;
-    color: #efffe9;
     font-family: 'Lobster', cursive;
+    
+    color: #efffe9;
     border: none;
     box-shadow: 3px 3px 3px #999999;
     cursor: pointer;
