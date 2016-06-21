@@ -17,15 +17,19 @@ var TicTacToe = (function () {
 
 	function playerMove() {
 		var id = this.id;
-		console.log(playerChoice, computerChoice);
+
 		var field = document.getElementById(id);
+		field.innerHTML = playerChoice;
+		field.removeEventListener("click", playerMove);
+
 		playerMoves += id;
 		possibleMoves = possibleMoves.splice(parseInt(id), 1);
-		console.log(playerChoice);
-		field.innerHTML += playerChoice;
-		field.removeEventListener("click", playerMove);
-		checkWinner(playerMoves, "You");
-		computerTurn();
+
+
+		if (field.innerHTML === playerChoice) {
+			checkWinner(playerMoves, playerChoice);
+		}
+
 	}
 
 	function checkWinner(moves, player) {
@@ -55,6 +59,9 @@ var TicTacToe = (function () {
 			console.log("congratulations ! ", player, " Won !");
 			removeEventListeners(fields, "click", playerMove);
 		}
+		if (player === playerChoice) {
+			computerTurn();
+		}
 
 	}
 
@@ -67,9 +74,6 @@ var TicTacToe = (function () {
 	function setUsers() {
 		playerChoice = this.id;
 		computerChoice = (playerChoice === "x") ? "o" : "x";
-		if (computerChoice === "x") {
-			computerTurn();
-		}
 		removeEventListeners([x, o], "click", setUsers);
 	}
 
@@ -82,7 +86,7 @@ var TicTacToe = (function () {
 		field.innerHTML = computerChoice;
 		computerMoves += computerMove.toString();
 		field.removeEventListener("click", playerMove);
-		checkWinner(computerMoves, "computer");
+		checkWinner(computerMoves, computerChoice);
 	}
 
 	function removeEventListeners(array, eventType, event) {
