@@ -1,0 +1,168 @@
+//BTNS
+$red: #E53A40
+$blue: #30A9DE
+$yellow: #EFDC05
+$green: #75D701
+$font: 'Roboto', sans-serif
+$font-color: #3E4348
+$border: 15px solid $font-color
+$menu-bgc: #E0E3DA
+$screen-color: #a6172d
+$dark-blue-switcher: #263959
+
+=center($direction)
+  flex-direction: $direction
+  display: flex
+  justify-content: center
+  align-items: center
+
+html
+  font-size: 62.5%
+  font-family: $font
+  color: $font-color
+*
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+
+ul
+  list-style-type: none
+
+.container
+  margin: 0 auto
+  width: 600px
+  height: 600px
+  +center(row)
+  flex-wrap: wrap
+  border-radius: 50%
+  border: 30px solid #3E4348
+  overflow: hidden
+
+.button
+  width: 50%
+  height: 50%
+  padding: 15px
+  cursor: pointer
+
+#redBtn
+  background-color: $red
+  border-bottom: $border
+  border-right: $border
+#greenBtn
+  background-color: $green
+  border-bottom: $border
+  border-left:  $border
+#blueBtn
+  background-color: $blue
+  border-top: $border
+  border-right:  $border
+#yellowBtn
+  background: $yellow
+  border-top: $border
+  border-left:  $border
+
+.menu
+  width: 300px
+  height: 300px
+  z-index: 10
+  position: absolute
+  border: $border
+  border-radius: 50%
+  left: calc(50% - 305px/2)
+  top: calc(50% - 330px/2)
+  background-color: white
+  +center(column)
+  flex-wrap: wrap
+  background-color: $menu-bgc
+
+.main-header
+  font-weight: 900
+  font-size: 3.5rem
+  width: 90%
+  margin: 10px auto 5px auto
+.counterAndSwitcher
+  +center(row)
+  margin: 5px 0
+
+  width: 100%
+  font-size: 1.5rem
+#counter
+  background-color: $screen-color
+  color: $red
+  width: 30%
+  margin-right: 10px
+  height: 30px
+  +center(initial)
+  font-size: 1.5rem
+
+#onOffBtn
+  background-color: $blue
+  width: 30%
+  height: 30px
+  margin: 5px
+  border: 3px solid $font-color
+  cursor: pointer
+#switch
+  width: 50%
+  height: 100%
+  background-color: $dark-blue-switcher
+  display: block
+
+
+.hover
+  &:hover
+    background-color: #D7FFF1 !important
+
+.sequence-click
+  background-color: #D7FFF1 !important
+
+.switchOn
+  animation: switchOn 0.5s ease-in
+  margin-left: 37px
+
+  @keyframes switchOn
+    from
+      margin-left: 0
+    to
+      margin-left: 37px
+
+.switchOff
+  animation: switchOff 0.5s ease-in
+  margin-left: 0
+
+  @keyframes switchOff
+    from
+      margin-left: 37px
+    to
+      margin-left: 0
+
+
+
+.options-button
+  border-radius: 50%
+  border: 4px solid $font-color
+  width: 40px
+  height: 40px
+  cursor: pointer
+
+.startAndStrict
+  +center(row)
+  flex-wrap: wrap
+  width: 100px
+  margin: 0 auto
+li
+  margin: 5px
+.button-header
+  width: 40px
+  font-size: 1.5em
+  font-weight: 600
+#start
+  background-color: $red
+#strict
+  background-color: $yellow
+
+.strict-on
+  border: 8px solid $red
+
+.started
+  border: 8px solid $yellow

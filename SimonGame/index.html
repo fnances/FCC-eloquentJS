@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="sass/styles.min.css" media="screen" title="no title" charset="utf-8">
+  <!-- <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'> -->
+</head>
+<body>
+
+<div class="container">
+
+<div class="button" id="redBtn">
+  <audio src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3"></audio>
+</div>
+<div class="button" id="greenBtn">
+  <audio src="https://s3.amazonaws.com/freecodecamp/simonSound2.mp3"></audio>
+
+</div>
+<div class="button" id="blueBtn">
+  <audio src="https://s3.amazonaws.com/freecodecamp/simonSound3.mp3"></audio>
+</div>
+<div class="button" id="yellowBtn">
+  <audio src="https://s3.amazonaws.com/freecodecamp/simonSound4.mp3"></audio>
+</div>
+
+<div class="menu">
+<h1 class="main-header">Simon Game</h1>
+<div class="counterAndSwitcher">
+  <div id="counter">00</div>
+  OFF
+  <div id="onOffBtn">
+
+  <span  id="switch"></span>
+
+  </div>
+  ON
+</div>
+<ul class="startAndStrict">
+<li class="button-header">Start</li>
+<li class="button-header">Strict</li>
+<li class="options-button" id="start"></li>
+<li class="options-button" id="strict"></li>
+</ul>
+
+</div>
+<audio id="wrong-answer" src="music/wrong-answer.m4a"></audio>
+</div>
+
+
+<script src="js/simonApp.js" charset="utf-8"></script>
+</body>
+</html>
