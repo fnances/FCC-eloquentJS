@@ -73,7 +73,6 @@ var simonApp = (function () {
 			if (isSequenceEqual()) {
 				actualTurn++;
 				playerSequence.length = 0;
-
 				updateCounter();
 				displayAiSequence();
 				return;
@@ -95,9 +94,7 @@ var simonApp = (function () {
 		addEventListenersToCollection([strictBtn, startBtn], "click", restartGame);
 	}
 
-
 	function pushToSequence() {
-
 		playSound(this);
 		playerSequence.push(this.id);
 
@@ -117,8 +114,6 @@ var simonApp = (function () {
 
 		function addAndRemove() {
 			var actualButton = document.getElementById(aiSequence[i]);
-			console.log(actualButton);
-
 			actualButton.classList.add("sequence-click");
 			temporaryButton = actualButton;
 			setTimeout(function () {
@@ -126,7 +121,6 @@ var simonApp = (function () {
 			}, speed - 100);
 
 			playSound(actualButton);
-			console.log(aiSequence);
 			if (i === actualTurn) {
 				gameStateManager();
 				clearInterval(interval);
