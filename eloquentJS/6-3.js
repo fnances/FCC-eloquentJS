@@ -20,7 +20,7 @@ ArraySeq.prototype.next = function () {
 function RangeSeq(froms, to) {
 	this.from = froms;
 	this.to = to;
-	this.currentItem = this.from;
+
 }
 
 RangeSeq.prototype.next = function () {
