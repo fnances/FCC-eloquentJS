@@ -26,15 +26,11 @@ html
 .settings
   +center(row, wrap)
   width: 50%
-  i, span
+  i ,span
     width: calc(33% - 30px)
     margin: 20px 10px
-    font-size: 50px
+    font-size: 6rem
     text-align: center
-i
-  cursor: pointer
-  &:hover
-    color:  #9baec8
 
 h2
   width: 100%
@@ -42,20 +38,24 @@ h2
   text-align: center
   font-size: 3rem
   letter-spacing: 3px
+
 .fa
   color: #2b90d9
   &:hover
+    color:  #9baec8
 
 .header-time-left
   width: 100%
-.fa-play, .fa-pause
-  font-size: 80px !important
-  width: 100%
-  text-align: center
+
 #time-passing
   width: 300px
+  cursor:pointer
   height: 300px
-  border: 3px solid #2b90d9
+  border: 3px solid #9baec8
   border-radius: 50%
   +center(auto, auto)
   font-size: 8rem
+  background-color:#2b90d9
+  &:hover
+    background-color: #9baec8
+    color: #2b90d9
