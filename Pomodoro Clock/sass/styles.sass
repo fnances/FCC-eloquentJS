@@ -5,7 +5,6 @@
   flex-direction: $direction
   flex-wrap: $wrap
 
-
 *
   margin: 0
   padding: 0
@@ -21,16 +20,14 @@ html
   width: 760px
   margin: 0 auto
   +center(row, wrap)
-
-
-.settings
-  +center(row, wrap)
   width: 50%
+  border-bottom: 3px solid black
   i ,span
     width: calc(33% - 30px)
     margin: 20px 10px
     font-size: 6rem
     text-align: center
+
 
 h2
   width: 100%
@@ -47,7 +44,7 @@ h2
 .header-time-left
   width: 100%
 
-#time-passing
+#time, #clock
   width: 300px
   cursor:pointer
   height: 300px

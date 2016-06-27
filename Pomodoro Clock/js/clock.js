@@ -1,135 +1,174 @@
-var clock = (function () {
+var clock = (function (namespace) {
+	var clockObject = {};
 
-	var timeScreen = document.getElementById("time-passing");
-	var breakLengthDOM = document.getElementById('breakLength');
-	var sessionLengthDOM = document.getElementById('sessionLength');
-	var icons = document.getElementsByTagName("i")
-	var initialSessionLength = 25;
-	var initialBreakLength = 5;
-	var countDown;
-	var isCountingDown = 1;
+	clockObject[namespace] = function () {
+		var containerChildren;
+		var CONFIG = {};
+		var eventDelegator = {};
+		var SESSION;
+		var BREAK;
+		var countDown;
+		var isCountingDown = 1;
 
-	function bindEvents() {
-		addEventListenersToCollection(icons, "click", emitEvent);
-		console.log(icons);
-	}
-
-	function startCountingDown() {
-		isCountingDown++;
-		var sessionInSeconds = initialSessionLength * 60;
-		var breakInSeconds = initialBreakLength * 60;
-		var modifyBtns = removeFromCollectionByID(icons, "time-passing");
-
-		if (isCountingDown % 2 === 0) {
-			removeEventListenersFromCollection(modifyBtns, "click", emitEvent);
-			countDown = setInterval(displayTime, 1000);
-			return;
+		function bindButtons() {
+			addEventListenersToCollection(containerChildren, "click", emitEvent);
 		}
-		initialState();
 
-		function displayTime() {
-			var seconds = 0;
-			if ((breakInSeconds <= 0) && (sessionInSeconds <= 0)) {
-				sessionInSeconds = initialSessionLength * 60;
-				breakInSeconds = initialBreakLength * 60;
+		function run(config) {
+
+			for (var prop in config) {
+				if ((prop === "SESSION") || (prop === "BREAK")) {
+					CONFIG[prop] = config[prop];
+				} else {
+					CONFIG[prop] = document.getElementById(config[prop]);
+				}
 			}
-			if (sessionInSeconds > 0) {
-				sessionInSeconds--;
-				seconds = sessionInSeconds;
+			containerChildren = CONFIG["CONTAINER"].children;
+			SESSION = CONFIG["SESSION"];
+			BREAK = CONFIG["BREAK"];
+			CONFIG["sessionDOM"].innerHTML = SESSION;
+			CONFIG["CLOCK"].innerHTML = SESSION;
+			CONFIG["breakDOM"].innerHTML = BREAK;
+			bindButtons();
+
+		}
+
+		function startCountingDown() {
+			isCountingDown++;
+			var sessionInSeconds = SESSION * 60;
+			var breakInSeconds = BREAK * 60;
+			var modifyBtns = removeFromCollectionByID(containerChildren, CONFIG["CLOCK"].id);
+
+			if (isCountingDown % 2 === 0) {
+				removeEventListenersFromCollection(modifyBtns, "click", emitEvent);
+				countDown = setInterval(displayTime, 1000);
+				return;
 			}
-			if ((breakInSeconds > 0) && (sessionInSeconds <= 0)) {
-				breakInSeconds--;
-				seconds = breakInSeconds;
+			clearInterval(countDown);
+
+			function displayTime() {
+				var seconds = 0;
+				if ((breakInSeconds <= 0) && (sessionInSeconds <= 0)) {
+					sessionInSeconds = SESSION * 60;
+					breakInSeconds = BREAK * 60;
+				}
+				if (sessionInSeconds > 0) {
+					sessionInSeconds--;
+					seconds = sessionInSeconds;
+				}
+				if ((breakInSeconds > 0) && (sessionInSeconds <= 0)) {
+					breakInSeconds--;
+					seconds = breakInSeconds;
+				}
+
+				var minutes = Math.floor(seconds / 60);
+				seconds = Math.floor(seconds % 60);
+
+				CONFIG["CLOCK"].innerHTML = getFormattedTime(minutes, seconds);
+			}
+		}
+
+		function getFormattedTime(mins, seconds) {
+			if (mins < 10) {
+				var mins = "0" + mins;
+			}
+			if (seconds < 10) {
+				var seconds = "0" + seconds;
 			}
 
-			var minutes = Math.floor(seconds / 60);
-			seconds = Math.floor(seconds % 60);
-
-			timeScreen.innerHTML = getFormattedTime(minutes, seconds);
-
-		}
-	}
-
-	function getFormattedTime(mins, seconds) {
-		if (mins < 10) {
-			var mins = "0" + mins;
-		}
-		if (seconds < 10) {
-			var seconds = "0" + seconds;
+			return mins + ":" + seconds;
 		}
 
-		return mins + ":" + seconds;
-	}
-
-	function initialState() {
-
-		clearInterval(countDown);
-		isCountingDown = 1;
-		initialSessionLength = 25;
-		initialBreakLength = 5;
-		sessionLengthDOM.innerHTML = initialSessionLength;
-		breakLengthDOM.innerHTML = initialBreakLength;
-		timeScreen.innerHTML = initialSessionLength;
-	}
-
-	function modifySessionLength(operation) {
-		initialSessionLength += operation;
-		if (initialSessionLength < 1) {
-			initialSessionLength = 1;
+		function modifySessionLength(operation) {
+			SESSION += operation;
+			if (SESSION < 1) {
+				SESSION = 1;
+			}
+			CONFIG["sessionDOM"].innerHTML = SESSION;
+			CONFIG["CLOCK"].innerHTML = SESSION;
 		}
-		sessionLengthDOM.innerHTML = initialSessionLength;
-		timeScreen.innerHTML = initialSessionLength;
-	}
 
-	function modifyBreakLength(operation) {
-		initialBreakLength += operation;
-		if (initialBreakLength < 1) {
-			initialBreakLength = 1;
+		function modifyBreakLength(operation) {
+			BREAK += operation;
+			if (BREAK < 1) {
+				BREAK = 1;
+			}
+			CONFIG["breakDOM"].innerHTML = BREAK;
 		}
-		breakLengthDOM.innerHTML = initialBreakLength;
-	}
 
-	function emitEvent() {
-		var self = this;
-		var eventDelegator = {
-			"break-plus": modifyBreakLength.bind(null, 1),
-			"break-minus": modifyBreakLength.bind(null, -1),
-			"session-plus": modifySessionLength.bind(null, 1),
-			"session-minus": modifySessionLength.bind(null, -1),
-			"time-passing": startCountingDown.bind(self)
+		function emitEvent() {
+			var self = this;
+			console.log(self);
+			eventDelegator[CONFIG["plusBreak"].id] = modifyBreakLength.bind(null, 1);
+			eventDelegator[CONFIG["minusBreak"].id] = modifyBreakLength.bind(null, -1);
+			eventDelegator[CONFIG["plusSession"].id] = modifySessionLength.bind(null, 1);
+			eventDelegator[CONFIG["minusSession"].id] = modifySessionLength.bind(null, -1);
+			eventDelegator[CONFIG["CLOCK"].id] = startCountingDown.bind(self);
+
+			return eventDelegator[this.id]();
+
+		}
+
+		function addEventListenersToCollection(collection, eventType, eventName) {
+			console.log(collection);
+			for (var i = 0; i < collection.length; i++) {
+				collection[i].addEventListener(eventType, eventName);
+			}
+		}
+
+		function removeEventListenersFromCollection(collection, eventType, eventName) {
+			for (var i = 0; i < collection.length; i++) {
+				collection[i].removeEventListener(eventType, eventName);
+			}
+		}
+
+		function removeFromCollectionByID(collection, id) {
+			var newCollection = [];
+			for (var i = 0; i < collection.length; i++) {
+				if (!collection[i].id === id) {
+					newCollection.push(collection[i]);
+				}
+			}
+			return newCollection;
+		}
+
+		return {
+			run: run
 		};
-
-		return eventDelegator[this.id]();
-
-	}
-
-	function addEventListenersToCollection(collection, eventType, eventName) {
-		for (var i = 0; i < collection.length; i++) {
-			collection[i].addEventListener(eventType, eventName);
-		}
-	}
-
-	function removeEventListenersFromCollection(collection, eventType, eventName) {
-		for (var i = 0; i < collection.length; i++) {
-			collection[i].removeEventListener("click", eventName);
-		}
-	}
-
-	function removeFromCollectionByID(collection, id) {
-		var newCollection = [];
-		for (var i = 0; i < collection.length; i++) {
-			if (!collection[i].id === id) {
-				newCollection.push(collection[i]);
-			}
-		}
-		return newCollection;
-	}
-
-	return {
-		bindEvents: bindEvents,
-		initialState: initialState
 	};
 
+	return clockObject[namespace];
+
 })();
-clock.bindEvents();
-clock.initialState();
+
+var firstClockCONF = {
+	SESSION: 25,
+	BREAK: 5,
+	CONTAINER: "firstClock",
+	CLOCK: "time",
+	plusBreak: "break-plus",
+	minusBreak: "break-minus",
+	plusSession: "session-plus",
+	minusSession: "session-minus",
+	sessionDOM: "sessionLength",
+	breakDOM: "breakLength"
+};
+
+var secondClockCONF = {
+	SESSION: 50,
+	BREAK: 10,
+	CONTAINER: "secondClock",
+	CLOCK: "clock",
+	plusBreak: "breakPlus",
+	minusBreak: "breakMinus",
+	plusSession: "sessionPlus",
+	minusSession: "sessionMinus",
+	sessionDOM: "session",
+	breakDOM: "break"
+};
+
+var firstClock = clock("firstClock");
+firstClock.run(firstClockCONF);
+
+var secondClock = clock("secondClock");
+secondClock.run(secondClockCONF);
