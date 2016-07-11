@@ -1,7 +1,6 @@
 $top-center: calc(50% - 25px)
 
-html
-  color: #E0E3DA
+
 .container
   width: 100%
   display: flex
@@ -13,7 +12,7 @@ html
   background-color: #566270
   &:hover
     background-color: #A593E0
-#imagesContainer
+.added-img-container
   margin-left: 30px
   width: 700px
 
@@ -22,13 +21,7 @@ html
   height: 50px
   padding-top: $top-center
   text-align: center
-#dropArea
-  width: 300px
-  height: 320px
-  opacity: 0
-  position: absolute
-  margin: 0 auto
-  top: 0
+
 .images-header
   display: none
   width: 100%
@@ -37,6 +30,6 @@ html
   display: block
 .drag-over
   background-color: #A593E0
-
 canvas
   margin: 10px
+  cursor: pointer

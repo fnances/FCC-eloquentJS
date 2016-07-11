@@ -1,80 +1,68 @@
-var app = (function () {
+var imageProcessingApp = (function () {
 
 	var imagesContainer;
 	var dropArea;
+	var inputFile;
 	var imagesHeader;
-	var fileNumber = 0;
 
-
-	function config(dropAreaID, containerID) {
+	function config(dropAreaID, inputID, containerID) {
 		dropArea = document.getElementById(dropAreaID);
+		inputFile = document.getElementById(inputID);
 		imagesContainer = document.getElementById(containerID);
 		imagesHeader = imagesContainer.querySelector('h1');
 
-		dropArea.addEventListener("dragenter", preventDefault);
-		dropArea.addEventListener("dragleave", preventDefault);
-		dropArea.addEventListener("drop", dropFiles);
-		dropArea.addEventListener("change", dropFiles);
+		dropArea.addEventListener("dragover", onDragOver);
+		dropArea.addEventListener("dragleave", onDragLeave);
+		dropArea.addEventListener("dragenter", onDragEnter);
+		dropArea.addEventListener("drop", onDrop);
+		inputFile.addEventListener("change", onInputUse);
 	}
 
-	function preventDefault(event) {
-
+	function onDragOver(event) {
 		event.preventDefault();
-		if (event.type === "dragenter") {
-			this.parentElement.classList.add("drag-over");
-		}
-		if (event.type === "dragleave") {
-			this.parentElement.classList.remove("drag-over");
-		}
-
 	}
 
-	function dropFiles(event) {
-
+	function onDragEnter(event) {
 		event.preventDefault();
-		if (event.type === "drop") {
-			this.parentElement.classList.remove("drag-over");
-		}
+		dropArea.classList.add("drag-over");
+	}
 
-		var files = (this.files.length) ? this.files : event.dataTransfer.files;
-		var imageURL;
-		for (var i = 0; i < files.length; i++) {
-			if (validateFiles(files[i])) {
-				imageURL = URL.createObjectURL(files[i]);
-				createCanvas(imageURL);
-			}
-		}
+	function onDragLeave(event) {
+		event.preventDefault();
+		dropArea.classList.remove("drag-over");
+	}
+
+	function onDrop(event) {
+		event.preventDefault();
+		dropArea.classList.remove("drag-over");
+		var files = event.dataTransfer.files;
+		processFiles(files);
 		imagesHeader.classList.add("show");
 	}
 
-	function validateFiles(file) {
-		return file.type === "image/jpeg" || file.type === "image/png";
+	function onInputUse(files) {
+		var files = this.files;
+		processFiles(files);
 	}
 
-	function createCanvas(src) {
-		fileNumber++;
-		var canvas = document.createElement("canvas");
-		var id = "canvas" + fileNumber;
-		canvas.id = id;
-		canvas.width = 150;
-		canvas.height = 150;
-		imagesContainer.appendChild(canvas);
-		canvas = document.getElementById(id);
-		var image = document.createElement("img");
-		image.onload = function () {
-			canvas.getContext("2d").drawImage(image, 0, 0, 150, 150);
+	function processFiles(files) {
+		var validatedFiles = filesValidator.validateFiles(files);
+		var url;
+		var imagesURLs = [];
+
+		for (var i = 0; i < validatedFiles.length; i++) {
+			url = URL.createObjectURL(validatedFiles[i]);
+			imagesURLs.push(url);
 		}
-		image.src = src;
-		canvas.addEventListener("click", function () {
-			window.open(src);
-		});
-	}
 
+		thumbnailsCreator.createThumbnails(imagesURLs);
+	}
 
 	return {
 		config: config
 	};
-
 })();
 
-app.config("dropArea", "imagesContainer");
+thumbnailsCreator.setThumbnailsSize(150, 150);
+filesValidator.setAllowedFileTypes(["image/jpeg", "image/png"]);
+imageProcessingApp.config("dropArea", "inputFile", "imagesContainer");

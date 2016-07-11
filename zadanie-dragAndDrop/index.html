@@ -4,24 +4,25 @@
     <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" href="css/styles.min.css" media="screen" title="no title" charset="utf-8">
+
   </head>
   <body>
 
     <div class="container">
 
-    <div class="dropZoneContainer">
+    <div class="dropZoneContainer" id="dropArea">
       <p class="info">Drag and Drop images over here or click to upload !</p>
-      <input type="file" multiple name="name" id="dropArea">
     </div>
+    <input type="file" multiple name="name" id="inputFile">
 
-    <div id="imagesContainer">
+    <div class="added-img-container" id="imagesContainer">
     <h1 class="images-header">Your images:</h1>
 
     </div>
     </div>
 
-
-
+  <script src="js/filesValidatorModule.js" charset="utf-8"></script>
+  <script src="js/thumbnailCreatorModule.js" charset="utf-8"></script>  
   <script src="js/app.js" charset="utf-8"></script>
   </body>
 </html>
