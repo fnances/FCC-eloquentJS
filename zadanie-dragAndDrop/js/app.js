@@ -40,7 +40,7 @@ var imageProcessingApp = (function () {
 		imagesHeader.classList.add("show");
 	}
 
-	function onInputUse(files) {
+	function onInputUse() {
 		var files = this.files;
 		processFiles(files);
 	}
@@ -63,6 +63,7 @@ var imageProcessingApp = (function () {
 	};
 })();
 
+thumbnailsCreator.setCanvasBackground("red");
 thumbnailsCreator.setThumbnailsSize(150, 150);
 filesValidator.setAllowedFileTypes(["image/jpeg", "image/png"]);
 imageProcessingApp.config("dropArea", "inputFile", "imagesContainer");
