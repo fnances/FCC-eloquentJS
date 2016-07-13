@@ -5,10 +5,15 @@ var imageProcessingApp = (function () {
 	var inputFile;
 	var imagesHeader;
 
-	function config(dropAreaID, inputID, containerID) {
-		dropArea = document.getElementById(dropAreaID);
-		inputFile = document.getElementById(inputID);
-		imagesContainer = document.getElementById(containerID);
+	function config(configs) {
+		dropArea = document.getElementById(configs.dropAreaID);
+		inputFile = document.getElementById(configs.inputID);
+		imagesContainer = document.getElementById(configs.containerID);
+
+		thumbnailsCreator.setCanvasBackground(configs.thumbnailBackground);
+		thumbnailsCreator.setThumbnailsSize(configs.thumbnailWidth, configs.thumbnailHeight);
+		filesValidator.setAllowedFileTypes(configs.allowedFileTypes);
+
 		imagesHeader = imagesContainer.querySelector('h1');
 
 		dropArea.addEventListener("dragover", onDragOver);
@@ -63,7 +68,14 @@ var imageProcessingApp = (function () {
 	};
 })();
 
-thumbnailsCreator.setCanvasBackground("red");
-thumbnailsCreator.setThumbnailsSize(150, 150);
-filesValidator.setAllowedFileTypes(["image/jpeg", "image/png"]);
-imageProcessingApp.config("dropArea", "inputFile", "imagesContainer");
+var config = {
+	dropAreaID: "dropArea",
+	inputID: "inputFile",
+	containerID: "imagesContainer",
+	thumbnailBackground: "red",
+	thumbnailWidth: 150,
+	thumbnailHeight: 150,
+	allowedFileTypes: ["image/png", "image/jpeg"]
+};
+
+imageProcessingApp.config(config);
